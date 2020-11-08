@@ -9,13 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener , AdapterView.OnItemSelectedListener {
 ListView continent;
 Spinner country;
 TextView hymn,pop,lang,capital;
     String[] con={"Asia","Europe","Africa","America"};
-    String text[][]=new String[8][4];
     String[]countAsia={"Israel","Japan","China","Cambodia","Cyprus","Turkey","india"};
     String[]countAmerica={"Argentina","Brazil","Canada","Chile","Colombia","Mexico","Peru"};
     String[]countEurope={"Poland","Germany","Italy","Spain","France","Austria","Sweden"};
@@ -30,13 +30,16 @@ TextView hymn,pop,lang,capital;
         setContentView(R.layout.activity_main);
 
 
-        continent.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         hymn =(TextView)findViewById(R.id.hymn);
         pop =(TextView)findViewById(R.id.pop);
         lang =(TextView)findViewById(R.id.lang);
         capital =(TextView)findViewById(R.id.capital);
         continent=(ListView)findViewById(R.id.continent);
         country=(Spinner)findViewById(R.id.country);
+        continent.setOnItemClickListener(this);
+        country.setOnItemSelectedListener(this);
+        ArrayAdapter <String> adp=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,con);
+        country.setAdapter(adp);
 
     }
 
@@ -91,92 +94,92 @@ TextView hymn,pop,lang,capital;
         if (type.equals("America")) {
             switch (countAmerica[position]) {
                 case "Argentina":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("En unión y libertad");
+                    lang.setText("spanish");
+                    pop.setText("44,938,712 ");
+                    capital.setText("buenos aires");
                     break;
                 case "Brazil":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText(" Hino Nacional Brasileiro");
+                    lang.setText("portuguese");
+                    pop.setText("210,147,125");
+                    capital.setText("brasilia");
                     break;
                 case "Canada":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("o canada");
+                    lang.setText("english");
+                    pop.setText("37,971,020");
+                    capital.setText("toronto");
                     break;
                 case "Chile":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Himno Nacional de Chile");
+                    lang.setText("spanish");
+                    pop.setText("17,574,003");
+                    capital.setText("santiago");
                     break;
                 case "Colombia":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Himno Nacional de la República de Colombia  ");
+                    lang.setText("spanish");
+                    pop.setText("50,372,424");
+                    capital.setText("bogota");
                     break;
                 case "Mexico":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Himno Nacional Mexicano");
+                    lang.setText("spanish");
+                    pop.setText("128,649,565");
+                    capital.setText("mexico city");
                     break;
                 case "Peru":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Himno Nacional del Perú");
+                    lang.setText("spanish");
+                    pop.setText("32,824,358 ");
+                    capital.setText("lima");
                     break;
             }
         }
         if (type.equals("Africa")) {
             switch (countAfrica[position]) {
                 case "Togo":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Travail, Liberté, Patrie");
+                    lang.setText("french");
+                    pop.setText("8,608,444");
+                    capital.setText("lome");
                     break;
                 case "Morocco":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("النشيد الوطني المغربي");
+                    lang.setText("arabic");
+                    pop.setText("36,472,000");
+                    capital.setText("rabat");
                     break;
                 case "Cameroon":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Ô Cameroun, Berceau de nos Ancêtres");
+                    lang.setText("french");
+                    pop.setText("yaounde");
+                    capital.setText("26,545,864");
                     break;
                 case "Gabon":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("La Concorde");
+                    lang.setText("french");
+                    pop.setText("2,119,275");
+                    capital.setText("Libreville");
                     break;
                 case "Chad":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("La Tchadienne");
+                    lang.setText("arabic");
+                    pop.setText("13,670,084");
+                    capital.setText("ndajamena");
                     break;
                 case "Ivory coast":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText(": L'Abidjanaise");
+                    lang.setText("french");
+                    pop.setText("26,378,274");
+                    capital.setText("Yamoussoukro ");
                     break;
                 case "Senegal":
-                    hymn.setText("");
-                    lang.setText("");
-                    pop.setText("");
-                    capital.setText("");
+                    hymn.setText("Pincez Tous vos Koras, Frappez les Balafons");
+                    lang.setText("french");
+                    pop.setText("15,854,323");
+                    capital.setText("dakar");
                     break;
             }
 
@@ -235,19 +238,23 @@ TextView hymn,pop,lang,capital;
         if ("Asia".equals(con[position])) {
             ArrayAdapter<String> adpl = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, countAsia);
             continent.setAdapter(adpl);
+            continent.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             type=con[position];
         } else if ("America".equals(con[position])) {
             ArrayAdapter<String> adpl = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, countAmerica);
             continent.setAdapter(adpl);
+            continent.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             type=con[position];
         } else if ("Africa".equals(con[position])) {
             ArrayAdapter<String> adpl=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,countAfrica);
             continent.setAdapter(adpl);
+            continent.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             type=con[position];
         }
         else{
             ArrayAdapter<String> adpl=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,countEurope);
             continent.setAdapter(adpl);
+            continent.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
             type=con[position];
         }
 
@@ -255,6 +262,6 @@ TextView hymn,pop,lang,capital;
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        Toast.makeText(getApplicationContext(),"choose continent",Toast.LENGTH_SHORT);
     }
 }
